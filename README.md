@@ -1,5 +1,7 @@
 # GameLibrary
 
-Application WPF avec architecture MVVM pour la gestion d'une bibliothèque de jeux vidéos.
+[![.NET Core Desktop](https://github.com/alainranger/GameLibrary/actions/workflows/dotnet-desktop.yml/badge.svg)](https://github.com/alainranger/GameLibrary/actions/workflows/dotnet-desktop.yml)
 
-Le but du projet est pour me remettre à niveau sur WPF et de m'entrainer à l'architecture MVVM.
+Application WPF avec architecture MVVM pour la gestion d'une bibliothÃ¨que de jeux vidÃ©os.
+
+Le but du projet est pour me remettre Ã  niveau sur WPF et de m'entrainer Ã  l'architecture MVVM.

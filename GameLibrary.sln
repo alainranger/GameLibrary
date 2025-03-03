@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.13.35825.156
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameLibrary", "GameLibrary\GameLibrary.csproj", "{46BD33CD-B7BC-2E1C-47DD-BF3EDD3DEDC5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameLibrary", "src\GameLibrary\GameLibrary.csproj", "{46BD33CD-B7BC-2E1C-47DD-BF3EDD3DEDC5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameLibrary.Core", "GameLibrary.Core\GameLibrary.Core.csproj", "{3EF4D903-ECDC-1FD6-3827-B7EBD6B5E1B6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameLibrary.Core", "src\GameLibrary.Core\GameLibrary.Core.csproj", "{3EF4D903-ECDC-1FD6-3827-B7EBD6B5E1B6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameLibrary.Tests.xUnit", "GameLibrary.Tests.xUnit\GameLibrary.Tests.xUnit.csproj", "{641EAA17-7E2B-7AE0-5B18-DAA6CCEDDB15}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameLibrary.Tests.xUnit", "tests\GameLibrary.Tests.xUnit\GameLibrary.Tests.xUnit.csproj", "{641EAA17-7E2B-7AE0-5B18-DAA6CCEDDB15}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameLibrary.Core.Tests.xUnit", "GameLibrary.Core.Tests.xUnit\GameLibrary.Core.Tests.xUnit.csproj", "{B023984C-8DF8-3BD9-CBF9-3C7BF2F0BA7F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameLibrary.Core.Tests.xUnit", "tests\GameLibrary.Core.Tests.xUnit\GameLibrary.Core.Tests.xUnit.csproj", "{B023984C-8DF8-3BD9-CBF9-3C7BF2F0BA7F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8EC462FD-D22E-90A8-E5CE-7E832BA40C5D}"
 	ProjectSection(SolutionItems) = preProject
@@ -18,6 +18,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		LICENSE.txt = LICENSE.txt
 		README.md = README.md
 	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{915ACC34-3A0A-436E-8406-A8A3D33CD319}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -44,6 +48,12 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{46BD33CD-B7BC-2E1C-47DD-BF3EDD3DEDC5} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{3EF4D903-ECDC-1FD6-3827-B7EBD6B5E1B6} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{641EAA17-7E2B-7AE0-5B18-DAA6CCEDDB15} = {915ACC34-3A0A-436E-8406-A8A3D33CD319}
+		{B023984C-8DF8-3BD9-CBF9-3C7BF2F0BA7F} = {915ACC34-3A0A-436E-8406-A8A3D33CD319}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C4941CA3-FB4F-42FF-9A0E-C8533D565992}

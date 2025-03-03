@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.Data.Common;
+using System.IO;
 
 using GameLibrary.Core.Services;
 
@@ -38,7 +39,7 @@ public class FileServiceTests : IDisposable
         }
         else
         {
-            Assert.True(false, $"File not exist: {_filePath}");
+            Assert.Fail($"File not exist: {_filePath}");
         }
     }
 
@@ -76,9 +77,18 @@ public class FileServiceTests : IDisposable
 
     public void Dispose()
     {
-        if (File.Exists(_filePath))
-        {
-            File.Delete(_filePath);
-        }
-    }
+		Dispose(true);
+		GC.SuppressFinalize(this);
+	}
+
+	protected virtual void Dispose(bool disposing)
+	{
+		if (disposing)
+		{
+			if (File.Exists(_filePath))
+			{
+				File.Delete(_filePath);
+			}
+		}
+	}
 }

@@ -71,7 +71,7 @@ public class PagesTests
         }
         else
         {
-            Assert.True(false, $"Can't resolve {nameof(IPageService)}");
+            Assert.Fail($"Can't resolve {nameof(IPageService)}");
         }
     }
 
@@ -93,7 +93,7 @@ public class PagesTests
         }
         else
         {
-            Assert.True(false, $"Can't resolve {nameof(IPageService)}");
+            Assert.Fail($"Can't resolve {nameof(IPageService)}");
         }
     }
 
@@ -115,7 +115,7 @@ public class PagesTests
         }
         else
         {
-            Assert.True(false, $"Can't resolve {nameof(IPageService)}");
+            Assert.Fail($"Can't resolve {nameof(IPageService)}");
         }
     }
 }

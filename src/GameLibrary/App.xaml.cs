@@ -7,11 +7,13 @@ using GameLibrary.Contracts.Services;
 using GameLibrary.Contracts.Views;
 using GameLibrary.Core.Contracts.Services;
 using GameLibrary.Core.Services;
+using GameLibrary.Core.Data;
 using GameLibrary.Models;
 using GameLibrary.Services;
 using GameLibrary.ViewModels;
 using GameLibrary.Views;
 
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -48,7 +50,15 @@ public partial class App : Application
                 .ConfigureServices(ConfigureServices)
                 .Build();
 
-        await _host.StartAsync();
+        using var scope = _host.Services.CreateScope();
+        var context = scope.ServiceProvider.GetRequiredService<GameLibraryDataContext>();
+        await context.Database.EnsureCreatedAsync().ConfigureAwait(true);
+
+#if DEBUG
+        DbInitializer.Initialize(context);
+#endif
+
+		await _host.StartAsync();
     }
 
     private void ConfigureServices(HostBuilderContext context, IServiceCollection services)
@@ -58,17 +68,23 @@ public partial class App : Application
         // App Host
         services.AddHostedService<ApplicationHostService>();
 
-        // Activation Handlers
+		// Configuration
+		services.Configure<AppConfig>(context.Configuration.GetSection(nameof(AppConfig)));
 
-        // Core Services
-        services.AddSingleton<IFileService, FileService>();
+		// Activation Handlers
+
+		// Database
+		services.AddDbContext<GameLibraryDataContext>(options => options.UseSqlite(context.Configuration.GetConnectionString("GameLibraryContextSQLite")));
+
+		// Core Services
+		services.AddSingleton<IFileService, FileService>();
 
         // Services
         services.AddSingleton<IApplicationInfoService, ApplicationInfoService>();
         services.AddSingleton<ISystemService, SystemService>();
         services.AddSingleton<IPersistAndRestoreService, PersistAndRestoreService>();
         services.AddSingleton<IThemeSelectorService, ThemeSelectorService>();
-        services.AddSingleton<IDataService, SampleDataService>();
+        services.AddSingleton<IDataService, DataService>();
         services.AddSingleton<IPageService, PageService>();
         services.AddSingleton<INavigationService, NavigationService>();
 
@@ -88,8 +104,7 @@ public partial class App : Application
         services.AddTransient<SettingsViewModel>();
         services.AddTransient<SettingsPage>();
 
-        // Configuration
-        services.Configure<AppConfig>(context.Configuration.GetSection(nameof(AppConfig)));
+        
     }
 
     private async void OnExit(object sender, ExitEventArgs e)
